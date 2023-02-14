@@ -25,6 +25,8 @@ def estudiantes(request):
     return render(request, 'AppCoder/estudiantes.html')
     #return HttpResponse("Vista estudiantes")
 
+
+
 def cursoFormulario(request):
     if request.method == 'POST':
         miFormulario = CursoFormulario(request.POST)
@@ -55,4 +57,14 @@ def profesorFormulario(request):
     else:
         miFormulario = ProfesorFormulario()
 
-    return render(request, "AppCoder/cursoFormulario.html", {"miFormulario":miFormulario})
+    return render(request, "AppCoder/profesorFormulario.html", {"miFormulario":miFormulario})
+
+def busquedaComision(request):
+
+    return render(request, "AppCoder/busquedaComision.html")
+
+def buscar(request):
+
+    respuesta = f"Estoy buscando la comision nro: {request.GET['comision']}"
+
+    return HttpResponse(respuesta)
