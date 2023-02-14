@@ -12,3 +12,13 @@ class ProfesorFormulario(forms.Form):
     apellido = forms.CharField(max_length=30)
     email = forms.EmailField()
     asignatura = forms.CharField(max_length=30)
+
+class EstudianteFormulario(forms.Form):
+    nombre = forms.CharField(max_length=30)
+    apellido = forms.CharField(max_length=30)
+    email = forms.EmailField()
+
+class EntregablesFormulario(forms.Form):
+    nombre = forms.CharField(max_length=30)
+    fechaDeEntrega = forms.DateField()
+    entregado = forms.BooleanField()

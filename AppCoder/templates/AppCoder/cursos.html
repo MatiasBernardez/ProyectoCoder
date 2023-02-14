@@ -5,7 +5,7 @@
 
 
     <!-- Aqui se va a colocar lo que se cambia y esta asociado a esta vista -->
-    <h1>Formulario - Agregar Curso</h1><br>
+    <h1>Formulario - Agregar curso</h1><br>
 
     {% if miFormulario.errors %}
 
@@ -27,38 +27,6 @@
 
 
     </form>
-
-    <br><h1>Búsqueda de comisión</h1><br>
-
-    <form action="/AppCoder/buscar/" method="GET">
-
-
-        <input type="number" name="comision" id="comision">
-
-        <input type="submit" value="Buscar">
-
-
-    </form>
-
-
-    {% if cursos %}
-
-    <p>Estamos buscando el: {{comision}}</p>
-
-    <ul>
-    {% for curso in cursos %}
-        <li> {{curso.nombre}} </li>
-        <li> {{curso.comision}} </li>
-    {% endfor %}
-
-    </ul>
-
-    {% else %}
-    <p>No hay datos con esa descripción</p>
-
-    {% endif %}
-
-    <p style="color: red;">{{respuesta}}</p>
 
 
 {% endblock %}

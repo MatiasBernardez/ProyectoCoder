@@ -3,8 +3,28 @@
 {% block contenidoQueCambia %}
 
     <!-- Aqui se va a colocar lo que se cambia y esta asociado a esta vista -->
-    <h1>Estudiantes</h1>
-    <p>Acá va la info de los estudiantes</p>
+    <h1>Formulario - Agregar estudiante</h1>
+
+    {% if miFormulario.errors %}
+
+    <p style="color:red;">Están mal los datos, revisar</p>
+
+    {% endif %}
+
+
+    <form action="" method="POST">{% csrf_token %}
+
+        <table>
+
+            {{ miFormulario.as_table }}
+
+        </table>
+
+
+        <br><input type="submit" value="Enviar">
+
+
+    </form>
 
 
 {% endblock %}

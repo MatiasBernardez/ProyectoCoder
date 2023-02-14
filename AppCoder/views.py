@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from AppCoder.models import Curso, Profesor
-from AppCoder.forms import CursoFormulario, ProfesorFormulario
+from AppCoder.models import Curso, Profesor, Estudiante, Entregable
+from AppCoder.forms import CursoFormulario, ProfesorFormulario, EstudianteFormulario, EntregablesFormulario
 
 
 # Create your views here.
@@ -51,7 +51,7 @@ def profesores(request):
 
         if miFormulario.is_valid:
             informacion = miFormulario.cleaned_data
-            profesor = Profesor(nombre=informacion['nombre'], apellido=informacion['apellido'], email=informacion["email"], asignatura=informacion["asignatura"])
+            profesor = Profesor(nombre=informacion['nombre'], apellido=informacion['apellido'], email=informacion['email'], asignatura=informacion['asignatura'])
             profesor.save()
             return render(request, "AppCoder/inicio.html")
 
@@ -60,6 +60,39 @@ def profesores(request):
 
     return render(request, "AppCoder/profesores.html", {"miFormulario":miFormulario})
 
+
+def estudiantes(request):
+    if request.method == 'POST':
+        miFormulario = EstudianteFormulario(request.POST)
+        print(miFormulario)
+
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+            estudiante = Estudiante(nombre=informacion['nombre'], apellido=informacion['apellido'], email=informacion['email'])
+            estudiante.save()
+            return render(request, "AppCoder/inicio.html")
+
+    else:
+        miFormulario = EstudianteFormulario()
+
+    return render(request, "AppCoder/estudiantes.html", {"miFormulario":miFormulario})
+
+
+def entregables(request):
+    if request.method == 'POST':
+        miFormulario = EntregablesFormulario(request.POST)
+        print(miFormulario)
+
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+            entregable = Entregable(nombre=informacion['nombre'], fechaDeEntrega=informacion['fechaDeEntrega'], entregado=informacion['entregado'])
+            entregable.save()
+            return render(request, "AppCoder/inicio.html")
+
+    else:
+        miFormulario = EntregablesFormulario()
+
+    return render(request, "AppCoder/profesores.html", {"miFormulario":miFormulario})
 
 def busquedaComision(request):
 
