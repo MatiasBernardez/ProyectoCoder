@@ -2,9 +2,63 @@
 {% load static %}
 {% block contenidoQueCambia %}
 
+
+
     <!-- Aqui se va a colocar lo que se cambia y esta asociado a esta vista -->
-    <h1>Cursos</h1>
-    <p>Acá va la info de los cursos</p>
+    <h1>Formulario - Agregar Curso</h1><br>
+
+    {% if miFormulario.errors %}
+
+    <p style="color:red;">Están mal los datos, revisar</p>
+
+    {% endif %}
+
+
+    <form action="" method="POST">{% csrf_token %}
+
+        <table>
+
+            {{ miFormulario.as_table }}
+
+        </table>
+
+
+        <br><input type="submit" value="Enviar">
+
+
+    </form>
+
+    <br><h1>Búsqueda de comisión</h1><br>
+
+    <form action="/AppCoder/buscar/" method="GET">
+
+
+        <input type="number" name="comision" id="comision">
+
+        <input type="submit" value="Buscar">
+
+
+    </form>
+
+
+    {% if cursos %}
+
+    <p>Estamos buscando el: {{comision}}</p>
+
+    <ul>
+    {% for curso in cursos %}
+        <li> {{curso.nombre}} </li>
+        <li> {{curso.comision}} </li>
+    {% endfor %}
+
+    </ul>
+
+    {% else %}
+    <p>No hay datos con esa descripción</p>
+
+    {% endif %}
+
+    <p style="color: red;">{{respuesta}}</p>
 
 
 {% endblock %}

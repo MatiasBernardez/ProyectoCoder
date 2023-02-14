@@ -27,7 +27,7 @@ def estudiantes(request):
 
 
 
-def cursoFormulario(request):
+def cursos(request):
     if request.method == 'POST':
         miFormulario = CursoFormulario(request.POST)
         print(miFormulario)
@@ -41,9 +41,10 @@ def cursoFormulario(request):
     else:
         miFormulario = CursoFormulario()
 
-    return render(request, "AppCoder/cursoFormulario.html", {"miFormulario":miFormulario})
+    return render(request, "AppCoder/cursos.html", {"miFormulario":miFormulario})
 
-def profesorFormulario(request):
+
+def profesores(request):
     if request.method == 'POST':
         miFormulario = ProfesorFormulario(request.POST)
         print(miFormulario)
@@ -57,14 +58,28 @@ def profesorFormulario(request):
     else:
         miFormulario = ProfesorFormulario()
 
-    return render(request, "AppCoder/profesorFormulario.html", {"miFormulario":miFormulario})
+    return render(request, "AppCoder/profesores.html", {"miFormulario":miFormulario})
+
 
 def busquedaComision(request):
 
     return render(request, "AppCoder/busquedaComision.html")
 
+
 def buscar(request):
 
-    respuesta = f"Estoy buscando la comision nro: {request.GET['comision']}"
+    if request.GET["comision"]:
 
-    return HttpResponse(respuesta)
+        #respuesta = f"Estoy buscando la comision nro: {request.GET['comision']}"
+        comision = request.GET["comision"]
+        cursos = Curso.objects.filter(comision__icontains=comision)
+
+        return render(request, "AppCoder/inicio.html", {"cursos":cursos, "comision":comision})
+
+    else:
+
+        respuesta = "No enviaste datos"
+
+
+    #return HttpResponse(respuesta)
+    return render(request, "AppCoder/inicio.html", {"respuesta":respuesta})
