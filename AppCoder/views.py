@@ -92,7 +92,10 @@ def entregables(request):
     else:
         miFormulario = EntregablesFormulario()
 
-    return render(request, "AppCoder/profesores.html", {"miFormulario":miFormulario})
+    return render(request, "AppCoder/entregables.html", {"miFormulario":miFormulario})
+
+
+
 
 def busquedaComision(request):
 
