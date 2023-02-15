@@ -102,7 +102,7 @@ def busquedaComision(request):
     return render(request, "AppCoder/busquedaComision.html")
 
 
-def buscar(request):
+def buscarComision(request):
 
     if request.GET["comision"]:
 
