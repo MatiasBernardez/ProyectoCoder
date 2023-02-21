@@ -1,1 +1,2 @@
-Estamos aprendiendo Python Django y BBDD
+ProyectoCoder
+Tercera pre-entrega Bernardez Matías
