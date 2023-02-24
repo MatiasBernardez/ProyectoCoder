@@ -12,17 +12,17 @@
     {% for p in profesores %}
 
         <li>{{p}}<li>
-            <button>
-                <a href = "{% url 'EliminarProfesor' p.nombre %}"> Eliminar</a>
-                <a href = "{% url 'EditarProfesor' p.nombre %}"> Editar</a>
-            </button>
+        <button>
+            <a href = "{% url 'EliminarProfesor' p.nombre %}"> Eliminar</a>
+            <a href = "{% url 'EditarProfesor' p.nombre %}"> Editar</a>
+        </button>
 
-        {% endfor %}
+    {% endfor %}
 
-        <br>
-        <br>
+    <br>
+    <br>
 
-        <a href = "profesores">Agregar otro profesor</a>
+    <a href = "profesores">Agregar otro profesor</a>
 
 
 </body>

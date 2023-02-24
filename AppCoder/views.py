@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from AppCoder.models import Curso, Profesor, Estudiante, Entregable
 from AppCoder.forms import CursoFormulario, ProfesorFormulario, EstudianteFormulario, EntregablesFormulario
+from django.views.generic import ListView
+from django.views.generic import DetailView
+from django.views.generic import CreateView, UpdateView, DeleteView
 
 
 # Create your views here.
@@ -169,3 +172,27 @@ def editarProfesor(request, profesor_nombre):
         miFormulario = ProfesorFormulario(initial = {'nombre':profesor.nombre, 'apellido':profesor.apellido, 'email':profesor.email, 'asignatura':profesor.asignatura})
 
     return render(request, "AppCoder/editarProfesor.html", {"miFormulario":miFormulario, "profesor_nombre":profesor_nombre})
+
+
+
+class CursoList(ListView):
+    model = Curso
+    template_name = "AppCoder/cursos_list.html"
+
+class CursoDetalle(DetailView):
+    model = Curso
+    template_name = "AppCoder/curso_detalle.html"
+
+class CursoCreacion(CreateView):
+    model = Curso
+    success_url = "/AppCoder/curso/list"
+    fields = ['nombre', 'comision']
+
+class CursoUpdate(UpdateView):
+    model = Curso
+    success_url = "/AppCoder/curso/list"
+    fields = ['nombre', 'comision']
+
+class CursoDelete(DeleteView):
+    model = Curso
+    success_url = "/AppCoder/Curso/list"
