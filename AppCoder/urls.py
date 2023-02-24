@@ -19,4 +19,6 @@ urlpatterns = [
     path(r'^nuevo$', views.CursoCreacion.as_view(), name='New'),
     path(r'^editar/(?P<pk>)\d+)$', views.CursoUpdate.as_view(), name='Edit'),
     path(r'^borrar/(?P<pk>)\d+)$', views.CursoDelete.as_view(), name='Delete'),
+    path('login', views.login_request, name='Login'),
+    path('register', views.register, name='Register'),
 ]
