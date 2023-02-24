@@ -12,9 +12,11 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserRegisterForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+@login_required
 def inicio(request):
     return render(request, 'AppCoder/inicio.html')
     #return HttpResponse("Vista inicio")
